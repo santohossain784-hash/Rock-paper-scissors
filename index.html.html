@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock, Paper, Scissors</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('images.png');
+            background-color: #0D0D0D;
+        }
+
+        .div1 {
+            width: 290px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .div2 {
+            background-color: gold;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .div3 {
+            background-color: blue;
+            height: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .top-images {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        button {
+            height: 100px;
+            width: 32%;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        button img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+
+        /* 100-Color Ultra-Smooth Animated Spectrum h1 */
+     
+    </style>
+</head>
+
+<body>
+
+<div style="display: flex; flex-direction: column; background-color: #0D0D0D; align-items: center; padding: 15px;">
+    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+        <h1 style="color: gold;">Ai:<br>Golden</h1>
+        <h1 style="color: blue;">YOU:<br>blue</h1>
+    </div>
+
+    <div class="div1">
+        <div class="div2">
+
+            <div class="top-images">
+                <button onclick="playGame('Rock')"><img src="rock.jfif.png" alt="Rock"></button>
+                <button onclick="playGame('Paper')"><img src="paper.jfif.png" alt="Paper"></button>
+                <button onclick="playGame('Scissors')"><img style="" src="scissors.jfif.png" alt="Scissors"></button>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center;">
+                <div style="width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; background-color: rgba(255,255,255,0.2);">
+                    <img id="computer-display" src="" style="height: 100%; width: auto; rotate: 180deg; object-fit: contain; display: none;">
+                </div>
+            </div>
+
+            <div class="div3" style="position: relative; display: flex; flex-direction: column; justify-content: flex-start;">
+                <div style="display: flex; width: 100%; justify-content: space-between;">
+                    <button onclick="playGame('Rock')"><img src="rock.jfif.png" alt="Rock"></button>
+                    <button onclick="playGame('Paper')"><img src="paper.jfif.png" alt="Paper"></button>
+                    <button onclick="playGame('Scissors')"><img src="scissors.jfif.png" alt="Scissors"></button>
+                </div>
+                
+                <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; margin-top: 15px;">
+                    <div style="width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; background-color: rgba(255,255,255,0.2);">
+                        <img id="player-display" src="" style="height: 100%; width: auto; object-fit: contain; display: none;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+function playGame(playerChoice) {
+    var choices = ['Rock', 'Paper', 'Scissors'];
+    var computersChoice = choices[Math.floor(Math.random() * 3)];
+    
+    var images = {
+        'Rock': 'rock.jfif.png',
+        'Paper': 'paper.jfif.png',
+        'Scissors': 'scissors.jfif.png'
+    };
+
+    var playerImg = document.getElementById('player-display');
+    playerImg.src = images[playerChoice];
+    playerImg.style.display = 'block';
+
+    var compImg = document.getElementById('computer-display');
+    compImg.src = images[computersChoice];
+    compImg.style.display = 'block';
+  
+    if (playerChoice === computersChoice) {
+        result = "draw";
+    } else if (
+        (playerChoice === 'Rock' && computersChoice === 'Scissors') ||
+        (playerChoice === 'Paper' && computersChoice === 'Rock') ||
+        (playerChoice === 'Scissors' && computersChoice === 'Paper')
+    ) {
+        result = "you won";
+    } else {
+        result = "ai won";
+    }
+    
+    setTimeout(function() {
+        alert(result);
+    }, 200);
+}
+</script>
+
+</body>
+</html>
